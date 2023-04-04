@@ -43,25 +43,33 @@ function replaceAll(text: string, search: string, replaceWith: string): string {
   return text;
 }
 
+const disableLogColors = process.env.DISABLE_COLOR_LOGS;
+
+export function _color(color: string) {
+  if( disableLogColors ) return "";
+
+  return color;
+}
+
 export function processColors(text: string, def: string) {
   try {
-    text = replaceAll(text, "^^", Reset + def);
-    text = replaceAll(text, "^R", FgRed);
-    text = replaceAll(text, "^G", FgGreen);
-    text = replaceAll(text, "^B", FgBlue);
-    text = replaceAll(text, "^Y", FgYellow);
-    text = replaceAll(text, "^C", FgCyan);
-    text = replaceAll(text, "^W", FgWhite);
-    text = replaceAll(text, "^K", FgBlack);
-    text = replaceAll(text, "^E", FgGray);
+    text = replaceAll(text, "^^", _color( Reset + def));
+    text = replaceAll(text, "^R", _color( FgRed));
+    text = replaceAll(text, "^G", _color( FgGreen));
+    text = replaceAll(text, "^B", _color( FgBlue));
+    text = replaceAll(text, "^Y", _color( FgYellow));
+    text = replaceAll(text, "^C", _color( FgCyan));
+    text = replaceAll(text, "^W", _color( FgWhite));
+    text = replaceAll(text, "^K", _color( FgBlack));
+    text = replaceAll(text, "^E", _color( FgGray));
 
-    text = replaceAll(text, "^r", BgRed);
-    text = replaceAll(text, "^g", BgGreen);
-    text = replaceAll(text, "^b", BgBlue);
-    text = replaceAll(text, "^y", BgYellow);
-    text = replaceAll(text, "^c", BgCyan);
-    text = replaceAll(text, "^w", BgWhite);
-    text = replaceAll(text, "^e", BgGray);
+    text = replaceAll(text, "^r", _color(BgRed));
+    text = replaceAll(text, "^g", _color(BgGreen));
+    text = replaceAll(text, "^b", _color(BgBlue));
+    text = replaceAll(text, "^y", _color(BgYellow));
+    text = replaceAll(text, "^c", _color(BgCyan));
+    text = replaceAll(text, "^w", _color(BgWhite));
+    text = replaceAll(text, "^e", _color(BgGray));
   } catch {}
 
   return text;

@@ -1,7 +1,7 @@
 import Transport from "winston-transport";
 import { round } from "../helpers/utils";
 import { Terminal } from "../monitoring/Terminal";
-import { BgWhite, FgBlack, BgGray, BgRed, FgWhite, FgRed, FgYellow, FgBlue, BgBlue, Reset, processColors } from "./logger";
+import { BgBlue, BgGray, BgRed, BgWhite, FgBlack, FgBlue, FgRed, FgWhite, FgYellow, processColors, Reset, _color } from "./logger";
 
 export class ColorConsole extends Transport {
   instance = 0;
@@ -62,7 +62,7 @@ export class ColorConsole extends Transport {
     }
 
     const memMb = round(process.memoryUsage().heapUsed / 1024 / 1024, 1);
-    const mem = BgBlue + FgBlack + `${memMb.toFixed(1).padStart(6, " ")}` + Reset;
+    const mem = _color(BgBlue) + _color(FgBlack) + `${memMb.toFixed(1).padStart(6, " ")}` + _color(Reset);
 
     // const mem = "";
     if (!ignore && info.message) {
@@ -90,12 +90,12 @@ export class ColorConsole extends Transport {
       if (this.lastLog === text) {
         this.duplicate++;
         process.stdout.write(
-          "\r" + BgGray + FgBlack + info.timestamp.substring(11, 11 + 11) + Reset + mem + ` ` + BgWhite + FgBlack + ` ${this.duplicate} ` + Reset
+          "\r" + _color(BgGray + FgBlack) + info.timestamp.substring(11, 11 + 11) + _color(Reset) + mem + ` ` + _color(BgWhite + FgBlack) + ` ${this.duplicate} ` + _color(Reset)
         );
       } else if (this.lastLog2 === text) {
         this.duplicate++;
         process.stdout.write(
-          "\r" + BgGray + FgBlack + info.timestamp.substring(11, 11 + 11) + Reset + mem + ` ` + BgWhite + FgBlack + ` ${this.duplicate}+ ` + Reset
+          "\r" + _color(BgGray + FgBlack) + info.timestamp.substring(11, 11 + 11) + _color(Reset + mem) + ` ` + _color(BgWhite + FgBlack) + ` ${this.duplicate}+ ` + _color(Reset)
         );
       } else {
         try {
@@ -108,7 +108,7 @@ export class ColorConsole extends Transport {
 
           //            |           |
           // "2022-01-10T13:13:07.712Z"
-          console.log(BgGray + FgBlack + info.timestamp.substring(11, 11 + 11) + Reset + mem + ` ` + color + processColors(text, color) + Reset);
+          console.log(_color(BgGray + FgBlack) + info.timestamp.substring(11, 11 + 11) + _color(Reset) + mem + ` ` + _color(color) + processColors(text, color) + _color(Reset));
         } catch {}
       }
     }

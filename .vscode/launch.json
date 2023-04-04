@@ -206,6 +206,10 @@
             "console": "integratedTerminal",
             "request": "launch",
             "name": "Launch Monitor",
+            "env": {
+                "DISABLE_COLOR_LOGS": "disable",
+            },
+
             "runtimeExecutable": "yarn",
             "runtimeArgs": [
                 "devmonitor"
