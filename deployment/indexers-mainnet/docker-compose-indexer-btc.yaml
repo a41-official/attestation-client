@@ -46,6 +46,7 @@ services:
   bitcoin-node:
     image: flarefoundation/bitcoin:23.0
     restart: unless-stopped
+    container_name: indexer-btc-node
     ports:
       - 8332:8332
       - 8333:8333

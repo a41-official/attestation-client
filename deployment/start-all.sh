@@ -16,6 +16,9 @@ if [[ $NETWORK == mainnet || $NETWORK == testnet ]] ; then
    cd ../monitor
    docker-compose -f docker-compose-monitor.yaml up -d
 
+   cd ../stats
+   docker-compose -f docker-compose-stats.yaml up -d
+
    cd ..
 else
   echo "Invalid network: '$NETWORK' ('mainnet' and 'testnet' supported)."

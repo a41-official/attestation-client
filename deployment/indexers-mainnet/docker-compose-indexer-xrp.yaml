@@ -46,6 +46,7 @@ services:
   ripple-node:
     image: flarefoundation/rippled:1.9.4
     restart: unless-stopped
+    container_name: indexer-xrp-node
     ports:
       - 5005:5005   # port_rpc_admin_local
       - 6006:6006   # port_ws_admin_local

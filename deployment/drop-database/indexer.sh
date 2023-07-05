@@ -12,6 +12,7 @@ if [[ $NETWORK == mainnet || $NETWORK == testnet ]] ; then
 
     docker stop indexer-$CHAIN-database
     docker container rm indexer-$CHAIN-database
+    docker volume rm indexer-${CHAIN}_indexer-${CHAIN}-db
 
     docker volume prune -f
 
