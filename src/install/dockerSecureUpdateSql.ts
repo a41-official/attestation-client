@@ -55,6 +55,13 @@ async function run() {
   // get secure DatabaseRootPassword
   const secureRootPassword = getSecureValue(`DatabaseRootPassword`);
 
+  // check if env password and new password are the same 
+  if( secureRootPassword === process.env.MYSQL_ROOT_PASSWORD )
+  {
+    logger.error(`ERROR: env password and secure password are the same. exiting.`);
+    return;
+  }
+
   // wait for database
   let connected = false;
   let password = "";
