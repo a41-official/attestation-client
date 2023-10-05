@@ -10,7 +10,9 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: test123
-      FLARE_NETWORK: songbird
+      MYSQL_USER: attesterWriter
+      MYSQL_PASSWORD: test1234
+      FLARE_NETWORK: flare
     depends_on:
       - database
 
