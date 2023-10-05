@@ -39,7 +39,7 @@ services:
     volumes:
     #   - ./mysql-conf.d/:/etc/mysql/conf.d
     #   - ./mysql-initdb/:/docker-entrypoint-initdb.d
-      - indexer-btc-db:/var/lib/mysql
+      - ../data/indexer-btc-db:/var/lib/mysql
     ports:
       - 23306:3306
 
@@ -50,7 +50,7 @@ services:
       - 8332:8332
       - 8333:8333
     volumes:
-      - bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
+      - ../data/bitcoin-mainnet-data:/opt/bitcoin/.bitcoin/db
       - ../node-configs/mainnet/bitcoin/bitcoin.conf:/opt/bitcoin/.bitcoin/bitcoin.conf
 
   spammer:
@@ -61,7 +61,3 @@ services:
     container_name: indexer-btc-spammer
     command: spammer BTC 10000
     restart: unless-stopped
-
-volumes:
-  bitcoin-mainnet-data:
-  indexer-btc-db:

@@ -41,7 +41,4 @@ services:
     volumes:
     #   - ./mysql-conf.d/:/etc/mysql/conf.d
     #   - ./mysql-initdb/:/docker-entrypoint-initdb.d
-      - attestation-client-db:/var/lib/mysql
-
-volumes:
-  attestation-client-db:
+      - ../data/attestation-client-db:/var/lib/mysql

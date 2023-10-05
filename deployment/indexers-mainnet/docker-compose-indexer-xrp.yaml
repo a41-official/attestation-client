@@ -39,7 +39,7 @@ services:
     volumes:
     #   - ./mysql-conf.d/:/etc/mysql/conf.d
     #   - ./mysql-initdb/:/docker-entrypoint-initdb.d
-      - indexer-xrp-db:/var/lib/mysql
+      - ../data/indexer-xrp-db:/var/lib/mysql
     ports:
       - 23308:3306
 
@@ -54,7 +54,7 @@ services:
       - 51233:51233 # port_ws_public
       - 50051:50051 # port_grpc
     volumes:
-      - ripple-mainnet-data:/opt/ripple/.ripple/db
+      - ../data/ripple-mainnet-data:/opt/ripple/.ripple/db
       - ../node-configs/mainnet/ripple/rippled.conf:/opt/ripple/.ripple/rippled.conf
       - ../node-configs/mainnet/ripple/validators.txt:/opt/ripple/.ripple/validators.txt
 
@@ -66,7 +66,3 @@ services:
     container_name: indexer-xrp-spammer
     command: spammer XRP 10000
     restart: unless-stopped
-
-volumes:
-  ripple-mainnet-data:
-  indexer-xrp-db:

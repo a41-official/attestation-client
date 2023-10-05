@@ -39,7 +39,7 @@ services:
     volumes:
     #   - ./mysql-conf.d/:/etc/mysql/conf.d
     #   - ./mysql-initdb/:/docker-entrypoint-initdb.d
-      - indexer-doge-db:/var/lib/mysql
+      - ../data/indexer-doge-db:/var/lib/mysql
     ports:
       - 23307:3306
 
@@ -50,7 +50,7 @@ services:
       - 22555:22555
       - 22556:22556
     volumes:
-      - dogecoin-mainnet-data:/opt/dogecoin/.dogecoin/db
+      - ../data/dogecoin-mainnet-data:/opt/dogecoin/.dogecoin/db
       - ../node-configs/mainnet/dogecoin/dogecoin.conf:/opt/dogecoin/.dogecoin/dogecoin.conf
 
   spammer:
@@ -61,7 +61,3 @@ services:
     container_name: indexer-doge-spammer
     command: spammer DOGE 10000
     restart: unless-stopped
-
-volumes:
-  dogecoin-mainnet-data:
-  indexer-doge-db:
