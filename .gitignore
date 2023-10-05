@@ -64,6 +64,7 @@ nul
 # deployment nodes
 deployment/node-configs/testnet/bitcoin/bitcoin.conf
 deployment/node-configs/testnet/dogecoin/dogecoin.conf
+deployment/data
 
 # local configs
 # .indexer.remote.dev.read.env
